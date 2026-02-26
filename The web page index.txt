@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Link Hub</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0f0f0f;
+      color: #e0e0e0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: #888;
+      margin-bottom: 2.5rem;
+    }
+
+    .container {
+      max-width: 420px;
+      width: 100%;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      color: #aaa;
+      margin: 2rem 0 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+    }
+
+    button {
+      width: 100%;
+      padding: 1.1rem;
+      margin: 0.6rem 0;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: white;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      background: #252525;
+      border-color: #555;
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .active {
+      background: #2a2a2a;
+      border-color: #4a4a4a;
+    }
+
+    .inactive {
+      color: #777;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .inactive:hover {
+      background: #1a1a1a;
+      transform: none;
+    }
+
+    @media (max-width: 500px) {
+      h1 { font-size: 2.2rem; }
+      button { font-size: 1rem; padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Link Hub</h1>
+    <div class="subtitle">(If a link blocks, just click again)</div>
+
+    <button class="active" onclick="openInBlank('https://nebula-x-site-mocha.vercel.app/index.html')">
+      Open Nebula Tools
+    </button>
+
+    <div class="section-title">Active Links</div>
+
+    <button class="active" onclick="openInBlank('https://theunblockman.github.io/Iframe-ambient/')">
+      Unblocked Browser
+    </button>
+
+    <button class="active" onclick="openInBlank('https://duck.tinyexams.com/#google_vignette')">
+      Ducky Math
+    </button>
+
+    <button class="active" onclick="openInBlank('https://classroomgame.github.io/')">
+      Classroom Games
+    </button>
+
+    <button class="active" onclick="openInBlank('https://eaglercraft.com/')">
+      Eaglercraft (Minecraft)
+    </button>
+
+    <button class="active" onclick="openInBlank('https://lichess.org/')">
+      Lichess Chess
+    </button>
+
+    <div class="section-title">Inactive / Coming Soon</div>
+
+    <button class="inactive" disabled>Free Proxy (not active)</button>
+    <button class="inactive" disabled>Example7 (not active)</button>
+    <button class="inactive" disabled>Example8 (not active)</button>
+    <button class="inactive" disabled>Example9 (not active)</button>
+    <button class="inactive" disabled>Example10 (not active)</button>
+    <button class="inactive" disabled>Example11 (not active)</button>
+    <button class="inactive" disabled>Example12 (not active)</button>
+    <button class="inactive" disabled>Example13 (not active)</button>
+    <button class="inactive" disabled>Example14 (not active)</button>
+  </div>
+
+  <script>
+    function openInBlank(url) {
+      try {
+        const win = window.open('about:blank', '_blank');
+        if (win) {
+          win.document.write(`
+            <!DOCTYPE html>
+            <html style="height:100%;margin:0;">
+              <body style="margin:0;height:100%;background:#000;">
+                <iframe src="${url}" frameborder="0" style="width:100%;height:100vh;border:none;"></iframe>
+              </body>
+            </html>
+          `);
+          win.document.close();
+        } else {
+          alert("Popup was blocked. Please allow popups for this site and try again.");
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  </script>
+
+</body>
+</html>
