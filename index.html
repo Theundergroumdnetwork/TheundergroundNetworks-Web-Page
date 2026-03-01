@@ -12,11 +12,11 @@
     }
 
     body {
-      background: linear-gradient(135deg, #0a0f15 0%, #000 100%);
-      color: #d0f0ff;
+      background: #0a0e17;
+      color: #d0faff;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       min-height: 100vh;
-      padding: 2.5rem 1rem;
+      padding: 3rem 1.2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -25,11 +25,33 @@
       overflow-x: hidden;
     }
 
+    /* Futuristic animated background grid + glows */
     body::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 20%, rgba(0, 255, 200, 0.03) 0%, transparent 50%);
+      background: 
+        repeating-linear-gradient(45deg, transparent 0, transparent 2px, rgba(0, 255, 208, 0.035) 2px, rgba(0, 255, 208, 0.035) 4px),
+        repeating-linear-gradient(-45deg, transparent 0, transparent 2px, rgba(0, 255, 208, 0.035) 2px, rgba(0, 255, 208, 0.035) 4px),
+        radial-gradient(circle at 15% 25%, rgba(0, 255, 208, 0.07) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(0, 180, 255, 0.05) 0%, transparent 55%);
+      background-size: 80px 80px, 80px 80px, 100% 100%, 100% 100%;
+      animation: gridDrift 80s linear infinite;
+      opacity: 0.65;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    @keyframes gridDrift {
+      0% { background-position: 0 0, 0 0; }
+      100% { background-position: 80px 80px, -80px -80px; }
+    }
+
+    body::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 15%, rgba(0, 255, 200, 0.06) 0%, transparent 65%);
       pointer-events: none;
       z-index: -1;
     }
@@ -40,15 +62,15 @@
       border-radius: 50%;
       overflow: hidden;
       margin-bottom: 1.8rem;
-      border: 2px solid rgba(0, 255, 208, 0.3);
-      box-shadow: 0 0 20px rgba(0, 255, 208, 0.25);
-      transition: all 0.3s ease;
+      border: 2px solid rgba(0, 255, 208, 0.35);
+      box-shadow: 0 0 25px rgba(0, 255, 208, 0.3);
+      transition: all 0.4s ease;
     }
 
     .logo-circle:hover {
-      transform: scale(1.1);
+      transform: scale(1.08);
       border-color: #00ffd0;
-      box-shadow: 0 0 30px rgba(0, 255, 208, 0.45);
+      box-shadow: 0 0 40px rgba(0, 255, 208, 0.55);
     }
 
     .logo-circle img {
@@ -59,56 +81,81 @@
     }
 
     h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      margin-bottom: 0.4rem;
+      font-size: 2.9rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
       letter-spacing: -0.03em;
-      text-shadow: 0 0 10px rgba(0, 255, 208, 0.3);
+      background: linear-gradient(90deg, #00ffd0, #00c0ff, #a78bfa, #00ffd0);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textGlow 4s linear infinite;
+      text-shadow: 0 0 15px rgba(0, 255, 208, 0.4);
+    }
+
+    @keyframes textGlow {
+      0%, 100% { background-position: 0% center; }
+      50% { background-position: 100% center; }
     }
 
     .subtitle {
       font-size: 1.05rem;
-      color: #88ccff;
+      color: #88ddff;
       margin-bottom: 3rem;
-      opacity: 0.85;
+      opacity: 0.82;
     }
 
     .container {
-      max-width: 440px;
+      max-width: 460px;
       width: 100%;
     }
 
     .section-title {
-      font-size: 1.15rem;
-      color: #66aaff;
-      margin: 2.5rem 0 1.2rem;
+      font-size: 1.18rem;
+      color: #66ccff;
+      margin: 2.8rem 0 1.3rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 600;
-      text-shadow: 0 0 8px rgba(102, 170, 255, 0.4);
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(102, 204, 255, 0.45);
     }
 
     button {
       width: 100%;
-      padding: 1.2rem;
-      margin: 0.7rem 0;
-      font-size: 1.15rem;
-      font-weight: 500;
-      color: #e0faff;
-      background: rgba(10, 20, 30, 0.7);
-      border: 1px solid #004d40;
-      border-radius: 14px;
+      padding: 1.25rem;
+      margin: 0.75rem 0;
+      font-size: 1.18rem;
+      font-weight: 600;
+      color: #e0ffff;
+      background: rgba(12, 25, 40, 0.5);
+      border: 1px solid rgba(0, 255, 208, 0.28);
+      border-radius: 16px;
       cursor: pointer;
-      transition: all 0.25s ease;
-      backdrop-filter: blur(4px);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.55);
+      position: relative;
+      overflow: hidden;
+    }
+
+    button::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 208, 0.18), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.7s ease;
+    }
+
+    button:hover::before {
+      transform: translateX(100%);
     }
 
     button:hover {
-      background: rgba(20, 40, 50, 0.9);
+      background: rgba(20, 45, 65, 0.7);
       border-color: #00ffd0;
-      box-shadow: 0 0 20px rgba(0, 255, 208, 0.35);
-      transform: translateY(-2px);
+      box-shadow: 0 0 28px rgba(0, 255, 208, 0.45);
+      transform: translateY(-3px);
     }
 
     button:active {
@@ -116,37 +163,113 @@
     }
 
     .active {
-      border-color: #00b894;
-      background: rgba(0, 184, 148, 0.08);
+      border-color: rgba(0, 184, 148, 0.65);
+      background: rgba(0, 184, 148, 0.1);
     }
 
     .inactive {
       color: #668899;
       cursor: not-allowed;
       opacity: 0.5;
-      border-color: #333;
+      border-color: #444;
+      background: rgba(15, 20, 30, 0.35);
     }
 
     .inactive:hover {
-      background: rgba(10, 20, 30, 0.7);
+      background: rgba(10, 20, 30, 0.35);
       box-shadow: none;
       transform: none;
     }
 
+    /* Welcome Popup Styles */
+    .welcome-popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+    }
+
+    .welcome-popup.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .popup-content {
+      background: rgba(15, 30, 50, 0.85);
+      border: 1px solid rgba(0, 255, 208, 0.4);
+      border-radius: 20px;
+      max-width: 420px;
+      width: 90%;
+      padding: 2.2rem 1.8rem;
+      box-shadow: 0 0 50px rgba(0, 255, 208, 0.35);
+      position: relative;
+      color: #e0ffff;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 1.8rem;
+      color: #88ddff;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .popup-close:hover {
+      color: #00ffd0;
+      transform: rotate(90deg);
+    }
+
+    .popup-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #00ffd0;
+      text-shadow: 0 0 12px rgba(0, 255, 208, 0.5);
+    }
+
+    .popup-text {
+      font-size: 1.05rem;
+      line-height: 1.55;
+      margin-bottom: 1.5rem;
+      opacity: 0.95;
+    }
+
     @media (max-width: 500px) {
-      h1 { font-size: 2.4rem; }
-      .logo-circle { width: 80px; height: 80px; }
-      button { padding: 1rem; font-size: 1.05rem; }
+      h1 { font-size: 2.5rem; }
+      .logo-circle { width: 80px; height: 80px; margin-bottom: 1.5rem; }
+      button { padding: 1.1rem; font-size: 1.1rem; }
+      .popup-content { padding: 1.8rem 1.4rem; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Welcome Popup -->
+  <div class="welcome-popup" id="welcomePopup">
+    <div class="popup-content">
+      <span class="popup-close" onclick="closePopup()">×</span>
+      <div class="popup-title">From the creators of Classroom Games</div>
+      <div class="popup-text">
+        Welcome to The Underground Network Link Hub!<br><br>
+        We have unblocked proxies, games, websites, tools, and more — all in one hidden spot.<br><br>
+        Explore the nodes below to get started. Stay stealthy.
+      </div>
+    </div>
+  </div>
+
   <div class="logo-circle">
-    <img 
-      src="logo_circle.png" 
-      alt="The Underground Network Logo" 
-    />
+    <img src="logo_circle.png" alt="The Underground Network Logo" />
   </div>
 
   <div class="container">
@@ -158,29 +281,23 @@
     </button>
 
     <div class="section-title">Active Nodes</div>
-
     <button class="active" onclick="openInBlank('https://holyunblocker.org/s?cache=1433178571')">
       Unblocked Browser
     </button>
-
     <button class="active" onclick="openInBlank('https://duck.tinyexams.com/#google_vignette')">
       Ducky Math
     </button>
-
     <button class="active" onclick="openInBlank('https://classroomgame.github.io/')">
       Classroom Games
     </button>
-
     <button class="active" onclick="openInBlank('https://eaglercraft.com/')">
       Eaglercraft (Minecraft)
     </button>
-
     <button class="active" onclick="openInBlank('https://lichess.org/')">
       Lichess Chess
     </button>
 
     <div class="section-title">Offline Nodes</div>
-
     <button class="inactive" disabled>Free Proxy (offline)</button>
     <button class="inactive" disabled>Example7 (offline)</button>
     <button class="inactive" disabled>Example8 (offline)</button>
@@ -193,6 +310,24 @@
   </div>
 
   <script>
+    // Popup logic
+    function showPopup() {
+      if (!localStorage.getItem('undergroundSeen')) {
+        document.getElementById('welcomePopup').classList.add('show');
+      }
+    }
+
+    function closePopup() {
+      document.getElementById('welcomePopup').classList.remove('show');
+      localStorage.setItem('undergroundSeen', 'true');
+    }
+
+    // Show popup on load (only first time)
+    window.onload = function() {
+      showPopup();
+    };
+
+    // Open in blank tab with iframe
     function openInBlank(url) {
       try {
         const win = window.open('about:blank', '_blank');
@@ -214,6 +349,5 @@
       }
     }
   </script>
-
 </body>
 </html>
