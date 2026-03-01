@@ -176,7 +176,7 @@
       transform:none;
     }
 
-    /* Welcome Popup */
+    /* Classroom Games Welcome Popup - shows EVERY refresh */
     .welcome-popup {
       position:fixed;
       inset:0;
@@ -250,7 +250,7 @@
 </head>
 <body>
 
-  <!-- Welcome Popup -->
+  <!-- Classroom Games Welcome Popup (shows every single time you open/refresh) -->
   <div class="welcome-popup" id="welcomePopup">
     <div class="popup-content">
       <span class="popup-close" onclick="closePopup()">×</span>
@@ -271,24 +271,24 @@
     <h1>The Underground Network Link Hub</h1>
     <div class="subtitle">(If a Website Blocks Click Back On Here And Try Again)</div>
 
-    <button class="active" onclick="openPopup('https://nebula-x-site-mocha.vercel.app/index.html')">
+    <button class="active" onclick="openInBlank('https://nebula-x-site-mocha.vercel.app/index.html')">
       Open Nebula Tools
     </button>
 
     <div class="section-title">Active Nodes</div>
-    <button class="active" onclick="openPopup('https://holyunblocker.org/s?cache=1433178571')">
+    <button class="active" onclick="openInBlank('https://holyunblocker.org/s?cache=1433178571')">
       Unblocked Browser
     </button>
-    <button class="active" onclick="openPopup('https://duck.tinyexams.com/#google_vignette')">
+    <button class="active" onclick="openInBlank('https://duck.tinyexams.com/#google_vignette')">
       Ducky Math
     </button>
-    <button class="active" onclick="openPopup('https://classroomgame.github.io/')">
+    <button class="active" onclick="openInBlank('https://classroomgame.github.io/')">
       Classroom Games
     </button>
-    <button class="active" onclick="openPopup('https://eaglercraft.com/')">
+    <button class="active" onclick="openInBlank('https://eaglercraft.com/')">
       Eaglercraft (Minecraft)
     </button>
-    <button class="active" onclick="openPopup('https://lichess.org/')">
+    <button class="active" onclick="openInBlank('https://lichess.org/')">
       Lichess Chess
     </button>
 
@@ -305,44 +305,45 @@
   </div>
 
   <script>
-    // Welcome popup (shows once)
+    // Classroom popup shows EVERY refresh (no localStorage)
     function showPopup() {
-      if (!localStorage.getItem('undergroundSeen')) {
-        document.getElementById('welcomePopup').classList.add('show');
-      }
+      document.getElementById('welcomePopup').classList.add('show');
     }
 
     function closePopup() {
       document.getElementById('welcomePopup').classList.remove('show');
-      localStorage.setItem('undergroundSeen', 'true');
     }
 
     window.onload = showPopup;
 
-    // Popup opener (tries minimal UI like some sign-in windows)
-    function openPopup(target) {
+    // Clean about:blank forever method - NO alerts at all
+    function openInBlank(targetUrl) {
       try {
-        // Evasion append (some filters allow this pattern)
         const evasion = '?suicidepreventionlifeline.org';
-        const url = target + evasion;
+        const url = targetUrl + evasion;
 
-        // Features for minimal/popup style (address bar often forced visible in 2025+)
-        const features = 'width=1000,height=700,' +
-                         'menubar=no,toolbar=no,location=yes,' +  // location=yes often forced anyway
-                         'status=no,directories=no,resizable=yes,scrollbars=yes,' +
-                         'noopener,noreferrer';
+        const win = window.open('about:blank', '_blank');
 
-        const popup = window.open(url, 'undergroundNode', features);
-
-        if (!popup || popup.closed || typeof popup.closed == 'undefined') {
-          // Blocked → fallback to new tab
-          alert("Popup blocked by browser/filter. Opening in new tab instead...");
-          window.open(url, '_blank');
+        if (win && win.document) {
+          win.document.write(`
+            <!DOCTYPE html>
+            <html style="height:100%;margin:0;background:#000;">
+              <head><meta charset="utf-8"></head>
+              <body style="margin:0;height:100%;background:#000;">
+                <iframe src="${url}" frameborder="0" style="width:100%;height:100vh;border:none;" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"></iframe>
+              </body>
+            </html>
+          `);
+          win.document.close();
+        } else {
+          // Silent fallback - no popup message
+          setTimeout(() => {
+            location.href = url;
+          }, 300);
         }
-
       } catch (e) {
+        // Completely silent if anything fails
         console.error(e);
-        alert("Couldn't open window. Try allowing popups or check your filter.");
       }
     }
   </script>
