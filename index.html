@@ -176,7 +176,7 @@
       transform:none;
     }
 
-    /* Classroom Games Welcome Popup - shows EVERY refresh */
+    /* Classroom Games Popup - shows EVERY refresh */
     .welcome-popup {
       position:fixed;
       inset:0;
@@ -200,9 +200,9 @@
       background:rgba(15,30,50,0.85);
       border:1px solid rgba(0,255,208,0.4);
       border-radius:20px;
-      max-width:420px;
+      max-width:460px;
       width:90%;
-      padding:2.2rem 1.8rem;
+      padding:2.5rem 2rem;
       box-shadow:0 0 50px rgba(0,255,208,0.35);
       position:relative;
       color:#e0ffff;
@@ -234,9 +234,8 @@
     }
 
     .popup-text {
-      font-size:1.05rem;
-      line-height:1.55;
-      margin-bottom:1.5rem;
+      font-size:1.1rem;
+      line-height:1.6;
       opacity:0.95;
     }
 
@@ -244,21 +243,20 @@
       h1 { font-size:2.5rem; }
       .logo-circle { width:80px; height:80px; margin-bottom:1.5rem; }
       button { padding:1.1rem; font-size:1.1rem; }
-      .popup-content { padding:1.8rem 1.4rem; }
+      .popup-content { padding:2rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Classroom Games Welcome Popup (shows every single time you open/refresh) -->
+  <!-- Classroom Games Popup - shows every single time you open or refresh -->
   <div class="welcome-popup" id="welcomePopup">
     <div class="popup-content">
       <span class="popup-close" onclick="closePopup()">×</span>
-      <div class="popup-title">From the creators of Classroom Games</div>
+      <div class="popup-title">FROM THE CREATORS OF CLASSROOM GAMES</div>
       <div class="popup-text">
-        Welcome to The Underground Network Link Hub!<br><br>
-        We have unblocked proxies, games, websites, tools, and more — all in one hidden spot.<br><br>
-        Explore the nodes below to get started. Stay stealthy.
+        WE PRESENT THE UNDERGROUND NETWORK<br><br>
+        WITH PROXIES, GAMES, WEBSITES AND MORE
       </div>
     </div>
   </div>
@@ -305,7 +303,7 @@
   </div>
 
   <script>
-    // Classroom popup shows EVERY refresh (no localStorage)
+    // Popup shows EVERY time the page opens or refreshes
     function showPopup() {
       document.getElementById('welcomePopup').classList.add('show');
     }
@@ -314,35 +312,44 @@
       document.getElementById('welcomePopup').classList.remove('show');
     }
 
-    window.onload = showPopup;
+    // Show popup immediately on load (no delay)
+    window.addEventListener('load', showPopup);
 
-    // Clean about:blank forever method - NO alerts at all
+    // LOCKED IN about:blank method - opens in a fresh blank tab that NEVER leaves about:blank
     function openInBlank(targetUrl) {
       try {
+        // Evasion string (some older Securly configs still let this through)
         const evasion = '?suicidepreventionlifeline.org';
         const url = targetUrl + evasion;
 
+        // Open blank tab
         const win = window.open('about:blank', '_blank');
 
-        if (win && win.document) {
-          win.document.write(`
-            <!DOCTYPE html>
-            <html style="height:100%;margin:0;background:#000;">
-              <head><meta charset="utf-8"></head>
-              <body style="margin:0;height:100%;background:#000;">
-                <iframe src="${url}" frameborder="0" style="width:100%;height:100vh;border:none;" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"></iframe>
-              </body>
-            </html>
-          `);
-          win.document.close();
-        } else {
-          // Silent fallback - no popup message
+        if (win) {
+          // Very short delay + force focus (helps on strict filters/Chromebooks)
           setTimeout(() => {
-            location.href = url;
-          }, 300);
+            if (win && !win.closed && win.document) {
+              win.focus();  // Try to bring it forward
+              win.document.open();
+              win.document.write(`
+                <!DOCTYPE html>
+                <html style="height:100%;margin:0;background:#000;">
+                  <head>
+                    <meta charset="utf-8">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                  </head>
+                  <body style="margin:0;height:100%;background:#000;overflow:hidden;">
+                    <iframe src="${url}" frameborder="0" style="width:100%;height:100vh;border:none;display:block;" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads"></iframe>
+                  </body>
+                </html>
+              `);
+              win.document.close();
+            }
+          }, 30);  // Tiny delay often fixes "blank forever" issues
         }
       } catch (e) {
-        // Completely silent if anything fails
+        // Silent - no alerts
         console.error(e);
       }
     }
