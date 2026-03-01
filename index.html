@@ -5,250 +5,246 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Underground Network - Link Hub</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
-      background: #0a0e17;
-      color: #d0faff;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      min-height: 100vh;
-      padding: 3rem 1.2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      overflow-x: hidden;
+      background:#0a0e17;
+      color:#d0faff;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+      min-height:100vh;
+      padding:3rem 1.2rem;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      position:relative;
+      overflow-x:hidden;
     }
 
     body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: 
-        repeating-linear-gradient(45deg, transparent 0, transparent 2px, rgba(0, 255, 208, 0.035) 2px, rgba(0, 255, 208, 0.035) 4px),
-        repeating-linear-gradient(-45deg, transparent 0, transparent 2px, rgba(0, 255, 208, 0.035) 2px, rgba(0, 255, 208, 0.035) 4px),
-        radial-gradient(circle at 15% 25%, rgba(0, 255, 208, 0.07) 0%, transparent 45%),
-        radial-gradient(circle at 85% 75%, rgba(0, 180, 255, 0.05) 0%, transparent 55%);
-      background-size: 80px 80px, 80px 80px, 100% 100%, 100% 100%;
-      animation: gridDrift 80s linear infinite;
-      opacity: 0.65;
-      pointer-events: none;
-      z-index: -2;
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        repeating-linear-gradient(45deg,transparent 0,transparent 2px,rgba(0,255,208,0.035) 2px,rgba(0,255,208,0.035) 4px),
+        repeating-linear-gradient(-45deg,transparent 0,transparent 2px,rgba(0,255,208,0.035) 2px,rgba(0,255,208,0.035) 4px),
+        radial-gradient(circle at 15% 25%,rgba(0,255,208,0.07) 0%,transparent 45%),
+        radial-gradient(circle at 85% 75%,rgba(0,180,255,0.05) 0%,transparent 55%);
+      background-size:80px 80px,80px 80px,100% 100%,100% 100%;
+      animation:gridDrift 80s linear infinite;
+      opacity:0.65;
+      pointer-events:none;
+      z-index:-2;
     }
 
     @keyframes gridDrift {
-      0% { background-position: 0 0, 0 0; }
-      100% { background-position: 80px 80px, -80px -80px; }
+      0% { background-position:0 0,0 0; }
+      100% { background-position:80px 80px,-80px -80px; }
     }
 
     body::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 15%, rgba(0, 255, 200, 0.06) 0%, transparent 65%);
-      pointer-events: none;
-      z-index: -1;
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 50% 15%,rgba(0,255,200,0.06) 0%,transparent 65%);
+      pointer-events:none;
+      z-index:-1;
     }
 
     .logo-circle {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-bottom: 1.8rem;
-      border: 2px solid rgba(0, 255, 208, 0.35);
-      box-shadow: 0 0 25px rgba(0, 255, 208, 0.3);
-      transition: all 0.4s ease;
+      width:90px;
+      height:90px;
+      border-radius:50%;
+      overflow:hidden;
+      margin-bottom:1.8rem;
+      border:2px solid rgba(0,255,208,0.35);
+      box-shadow:0 0 25px rgba(0,255,208,0.3);
+      transition:all 0.4s ease;
     }
 
     .logo-circle:hover {
-      transform: scale(1.08);
-      border-color: #00ffd0;
-      box-shadow: 0 0 40px rgba(0, 255, 208, 0.55);
+      transform:scale(1.08);
+      border-color:#00ffd0;
+      box-shadow:0 0 40px rgba(0,255,208,0.55);
     }
 
     .logo-circle img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
     }
 
     h1 {
-      font-size: 2.9rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.03em;
-      background: linear-gradient(90deg, #00ffd0, #00c0ff, #a78bfa, #00ffd0);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: textGlow 4s linear infinite;
-      text-shadow: 0 0 15px rgba(0, 255, 208, 0.4);
+      font-size:2.9rem;
+      font-weight:800;
+      margin-bottom:0.5rem;
+      letter-spacing:-0.03em;
+      background:linear-gradient(90deg,#00ffd0,#00c0ff,#a78bfa,#00ffd0);
+      background-size:200% auto;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:textGlow 4s linear infinite;
+      text-shadow:0 0 15px rgba(0,255,208,0.4);
     }
 
     @keyframes textGlow {
-      0%, 100% { background-position: 0% center; }
-      50% { background-position: 100% center; }
+      0%,100% { background-position:0% center; }
+      50% { background-position:100% center; }
     }
 
     .subtitle {
-      font-size: 1.05rem;
-      color: #88ddff;
-      margin-bottom: 3rem;
-      opacity: 0.82;
+      font-size:1.05rem;
+      color:#88ddff;
+      margin-bottom:3rem;
+      opacity:0.82;
     }
 
     .container {
-      max-width: 460px;
-      width: 100%;
+      max-width:460px;
+      width:100%;
     }
 
     .section-title {
-      font-size: 1.18rem;
-      color: #66ccff;
-      margin: 2.8rem 0 1.3rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 700;
-      text-shadow: 0 0 10px rgba(102, 204, 255, 0.45);
+      font-size:1.18rem;
+      color:#66ccff;
+      margin:2.8rem 0 1.3rem;
+      text-transform:uppercase;
+      letter-spacing:0.1em;
+      font-weight:700;
+      text-shadow:0 0 10px rgba(102,204,255,0.45);
     }
 
     button {
-      width: 100%;
-      padding: 1.25rem;
-      margin: 0.75rem 0;
-      font-size: 1.18rem;
-      font-weight: 600;
-      color: #e0ffff;
-      background: rgba(12, 25, 40, 0.5);
-      border: 1px solid rgba(0, 255, 208, 0.28);
-      border-radius: 16px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.55);
-      position: relative;
-      overflow: hidden;
+      width:100%;
+      padding:1.25rem;
+      margin:0.75rem 0;
+      font-size:1.18rem;
+      font-weight:600;
+      color:#e0ffff;
+      background:rgba(12,25,40,0.5);
+      border:1px solid rgba(0,255,208,0.28);
+      border-radius:16px;
+      cursor:pointer;
+      transition:all 0.3s ease;
+      backdrop-filter:blur(8px);
+      box-shadow:0 5px 18px rgba(0,0,0,0.55);
+      position:relative;
+      overflow:hidden;
     }
 
     button::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(0, 255, 208, 0.18), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.7s ease;
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,transparent,rgba(0,255,208,0.18),transparent);
+      transform:translateX(-100%);
+      transition:transform 0.7s ease;
     }
 
     button:hover::before {
-      transform: translateX(100%);
+      transform:translateX(100%);
     }
 
     button:hover {
-      background: rgba(20, 45, 65, 0.7);
-      border-color: #00ffd0;
-      box-shadow: 0 0 28px rgba(0, 255, 208, 0.45);
-      transform: translateY(-3px);
+      background:rgba(20,45,65,0.7);
+      border-color:#00ffd0;
+      box-shadow:0 0 28px rgba(0,255,208,0.45);
+      transform:translateY(-3px);
     }
 
     button:active {
-      transform: translateY(0);
+      transform:translateY(0);
     }
 
     .active {
-      border-color: rgba(0, 184, 148, 0.65);
-      background: rgba(0, 184, 148, 0.1);
+      border-color:rgba(0,184,148,0.65);
+      background:rgba(0,184,148,0.1);
     }
 
     .inactive {
-      color: #668899;
-      cursor: not-allowed;
-      opacity: 0.5;
-      border-color: #444;
-      background: rgba(15, 20, 30, 0.35);
+      color:#668899;
+      cursor:not-allowed;
+      opacity:0.5;
+      border-color:#444;
+      background:rgba(15,20,30,0.35);
     }
 
     .inactive:hover {
-      background: rgba(10, 20, 30, 0.35);
-      box-shadow: none;
-      transform: none;
+      background:rgba(10,20,30,0.35);
+      box-shadow:none;
+      transform:none;
     }
 
     /* Welcome Popup */
     .welcome-popup {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(6px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.6s ease;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.75);
+      backdrop-filter:blur(6px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity 0.6s ease;
     }
 
     .welcome-popup.show {
-      opacity: 1;
-      pointer-events: all;
+      opacity:1;
+      pointer-events:all;
     }
 
     .popup-content {
-      background: rgba(15, 30, 50, 0.85);
-      border: 1px solid rgba(0, 255, 208, 0.4);
-      border-radius: 20px;
-      max-width: 420px;
-      width: 90%;
-      padding: 2.2rem 1.8rem;
-      box-shadow: 0 0 50px rgba(0, 255, 208, 0.35);
-      position: relative;
-      color: #e0ffff;
-      text-align: center;
-      backdrop-filter: blur(10px);
+      background:rgba(15,30,50,0.85);
+      border:1px solid rgba(0,255,208,0.4);
+      border-radius:20px;
+      max-width:420px;
+      width:90%;
+      padding:2.2rem 1.8rem;
+      box-shadow:0 0 50px rgba(0,255,208,0.35);
+      position:relative;
+      color:#e0ffff;
+      text-align:center;
+      backdrop-filter:blur(10px);
     }
 
     .popup-close {
-      position: absolute;
-      top: 12px;
-      right: 16px;
-      font-size: 1.8rem;
-      color: #88ddff;
-      cursor: pointer;
-      transition: all 0.3s;
+      position:absolute;
+      top:12px;
+      right:16px;
+      font-size:1.8rem;
+      color:#88ddff;
+      cursor:pointer;
+      transition:all 0.3s;
     }
 
     .popup-close:hover {
-      color: #00ffd0;
-      transform: rotate(90deg);
+      color:#00ffd0;
+      transform:rotate(90deg);
     }
 
     .popup-title {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: #00ffd0;
-      text-shadow: 0 0 12px rgba(0, 255, 208, 0.5);
+      font-size:1.6rem;
+      font-weight:700;
+      margin-bottom:1rem;
+      color:#00ffd0;
+      text-shadow:0 0 12px rgba(0,255,208,0.5);
     }
 
     .popup-text {
-      font-size: 1.05rem;
-      line-height: 1.55;
-      margin-bottom: 1.5rem;
-      opacity: 0.95;
+      font-size:1.05rem;
+      line-height:1.55;
+      margin-bottom:1.5rem;
+      opacity:0.95;
     }
 
-    @media (max-width: 500px) {
-      h1 { font-size: 2.5rem; }
-      .logo-circle { width: 80px; height: 80px; margin-bottom: 1.5rem; }
-      button { padding: 1.1rem; font-size: 1.1rem; }
-      .popup-content { padding: 1.8rem 1.4rem; }
+    @media (max-width:500px) {
+      h1 { font-size:2.5rem; }
+      .logo-circle { width:80px; height:80px; margin-bottom:1.5rem; }
+      button { padding:1.1rem; font-size:1.1rem; }
+      .popup-content { padding:1.8rem 1.4rem; }
     }
   </style>
 </head>
@@ -309,7 +305,7 @@
   </div>
 
   <script>
-    // Popup logic
+    // Welcome popup (shows once)
     function showPopup() {
       if (!localStorage.getItem('undergroundSeen')) {
         document.getElementById('welcomePopup').classList.add('show');
@@ -321,27 +317,24 @@
       localStorage.setItem('undergroundSeen', 'true');
     }
 
-    window.onload = function() {
-      showPopup();
-    };
+    window.onload = showPopup;
 
-    // Improved openInBlank with more evasion attempts
-    function openInBlank(targetUrl) {
+    // Stealthier about:blank opener with fallbacks
+    function openInBlank(target) {
       try {
-        // Add common evasion string some filters allow through
+        // Common evasion trick some filters still allow
         const evasion = '?suicidepreventionlifeline.org';
-        const url = targetUrl + evasion;
+        const url = target + evasion;
 
-        // Try fancy window.open first
         const features = 'width=1200,height=800,menubar=no,toolbar=no,location=no,status=no,scrollbars=yes,resizable=yes,noopener,noreferrer';
         let win = window.open('about:blank', '_blank', features);
 
-        if (win && win.document) {
+        if (win && win.document && !win.closed) {
           win.document.write(`
             <!DOCTYPE html>
             <html style="height:100%;margin:0;background:#000;">
               <head><meta charset="utf-8"></head>
-              <body style="margin:0;height:100%;background:#000;color:#0f0;">
+              <body style="margin:0;height:100%;background:#000;color:#0f0;font-family:sans-serif;">
                 <iframe src="${url}" frameborder="0" style="width:100%;height:100vh;border:none;" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"></iframe>
               </body>
             </html>
@@ -350,10 +343,10 @@
           return;
         }
 
-        // Fallback 1: short delay + retry
+        // Quick retry after tiny delay (sometimes helps)
         setTimeout(() => {
           win = window.open('about:blank', '_blank', features);
-          if (win && win.document) {
+          if (win && win.document && !win.closed) {
             win.document.write(`
               <!DOCTYPE html>
               <html style="height:100%;margin:0;background:#000;">
@@ -364,19 +357,17 @@
             `);
             win.document.close();
           }
-        }, 100);
+        }, 120);
 
-        // Fallback 2: if still blocked, try current tab redirect
-        if (!win) {
-          alert("Popup blocked. Trying direct load (may be filtered)...");
-          setTimeout(() => {
-            location.href = url;
-          }, 800);
+        // Final fallback: direct load in current tab
+        if (!win || win.closed) {
+          alert("Popup blocked. Attempting direct load (may be filtered)...");
+          setTimeout(() => { location.href = url; }, 900);
         }
 
       } catch (e) {
         console.error(e);
-        alert("Something blocked it. Try allowing popups or check your filter settings.");
+        alert("Access blocked. Try allowing popups or disabling any content filters.");
       }
     }
   </script>
