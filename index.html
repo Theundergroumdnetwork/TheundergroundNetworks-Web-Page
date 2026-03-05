@@ -6,7 +6,6 @@
   <title>The Underground Network - Link Hub</title>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-
     body {
       background:#0a0e17;
       color:#d0faff;
@@ -20,7 +19,6 @@
       position:relative;
       overflow-x:hidden;
     }
-
     body::before {
       content:"";
       position:absolute;
@@ -36,12 +34,10 @@
       pointer-events:none;
       z-index:-2;
     }
-
     @keyframes gridDrift {
       0% { background-position:0 0,0 0; }
       100% { background-position:80px 80px,-80px -80px; }
     }
-
     body::after {
       content:"";
       position:absolute;
@@ -50,7 +46,6 @@
       pointer-events:none;
       z-index:-1;
     }
-
     .logo-circle {
       width:90px;
       height:90px;
@@ -61,20 +56,17 @@
       box-shadow:0 0 25px rgba(0,255,208,0.3);
       transition:all 0.4s ease;
     }
-
     .logo-circle:hover {
       transform:scale(1.08);
       border-color:#00ffd0;
       box-shadow:0 0 40px rgba(0,255,208,0.55);
     }
-
     .logo-circle img {
       width:100%;
       height:100%;
       object-fit:cover;
       display:block;
     }
-
     h1 {
       font-size:2.9rem;
       font-weight:800;
@@ -87,24 +79,20 @@
       animation:textGlow 4s linear infinite;
       text-shadow:0 0 15px rgba(0,255,208,0.4);
     }
-
     @keyframes textGlow {
       0%,100% { background-position:0% center; }
       50% { background-position:100% center; }
     }
-
     .subtitle {
       font-size:1.05rem;
       color:#88ddff;
       margin-bottom:3rem;
       opacity:0.82;
     }
-
     .container {
       max-width:460px;
       width:100%;
     }
-
     .section-title {
       font-size:1.18rem;
       color:#66ccff;
@@ -114,7 +102,6 @@
       font-weight:700;
       text-shadow:0 0 10px rgba(102,204,255,0.45);
     }
-
     button {
       width:100%;
       padding:1.25rem;
@@ -132,7 +119,6 @@
       position:relative;
       overflow:hidden;
     }
-
     button::before {
       content:"";
       position:absolute;
@@ -141,27 +127,22 @@
       transform:translateX(-100%);
       transition:transform 0.7s ease;
     }
-
     button:hover::before {
       transform:translateX(100%);
     }
-
     button:hover {
       background:rgba(20,45,65,0.7);
       border-color:#00ffd0;
       box-shadow:0 0 28px rgba(0,255,208,0.45);
       transform:translateY(-3px);
     }
-
     button:active {
       transform:translateY(0);
     }
-
     .active {
       border-color:rgba(0,184,148,0.65);
       background:rgba(0,184,148,0.1);
     }
-
     .inactive {
       color:#668899;
       cursor:not-allowed;
@@ -169,13 +150,11 @@
       border-color:#444;
       background:rgba(15,20,30,0.35);
     }
-
     .inactive:hover {
       background:rgba(10,20,30,0.35);
       box-shadow:none;
       transform:none;
     }
-
     /* Classroom Games Popup - shows EVERY refresh */
     .welcome-popup {
       position:fixed;
@@ -190,12 +169,10 @@
       pointer-events:none;
       transition:opacity 0.6s ease;
     }
-
     .welcome-popup.show {
       opacity:1;
       pointer-events:all;
     }
-
     .popup-content {
       background:rgba(15,30,50,0.85);
       border:1px solid rgba(0,255,208,0.4);
@@ -209,7 +186,6 @@
       text-align:center;
       backdrop-filter:blur(10px);
     }
-
     .popup-close {
       position:absolute;
       top:12px;
@@ -219,12 +195,10 @@
       cursor:pointer;
       transition:all 0.3s;
     }
-
     .popup-close:hover {
       color:#00ffd0;
       transform:rotate(90deg);
     }
-
     .popup-title {
       font-size:1.6rem;
       font-weight:700;
@@ -232,13 +206,19 @@
       color:#00ffd0;
       text-shadow:0 0 12px rgba(0,255,208,0.5);
     }
-
     .popup-text {
       font-size:1.1rem;
       line-height:1.6;
       opacity:0.95;
     }
-
+    .footer-message {
+      font-size:0.95rem;
+      color:#88ddff;
+      margin-top:3rem;
+      opacity:0.82;
+      text-align:center;
+      max-width:460px;
+    }
     @media (max-width:500px) {
       h1 { font-size:2.5rem; }
       .logo-circle { width:80px; height:80px; margin-bottom:1.5rem; }
@@ -248,7 +228,6 @@
   </style>
 </head>
 <body>
-
   <!-- Classroom Games Popup - shows every single time you open or refresh -->
   <div class="welcome-popup" id="welcomePopup">
     <div class="popup-content">
@@ -260,22 +239,18 @@
       </div>
     </div>
   </div>
-
   <div class="logo-circle">
     <img src="logo_circle.png" alt="The Underground Network Logo" />
   </div>
-
   <div class="container">
     <h1>The Underground Network Link Hub</h1>
     <div class="subtitle">(If a Website Blocks Click Back On Here And Try Again)</div>
-
     <button class="active" onclick="openInBlank('https://p4zfvn-8080.csb.app')">
       Unblocked browser (Bolt)
     </button>
     <button class="active" onclick="openInBlank('https://cuddly-train-r499jr45v4j62gw-1234.app.github.dev')">
       Unblocked browser (Ludicrous)
     </button>
-
     <div class="section-title">Active Nodes</div>
     <button class="active" onclick="openInBlank('https://theundergroumdnetwork.github.io/Chatgpt-kinda/')">
       Unblocked Ai
@@ -292,7 +267,6 @@
     <button class="active" onclick="openInBlank('https://lichess.org/')">
       Lichess Chess
     </button>
-
     <div class="section-title">Offline Nodes</div>
     <button class="inactive" disabled>Free Proxy (offline)</button>
     <button class="inactive" disabled>Example7 (offline)</button>
@@ -304,35 +278,32 @@
     <button class="inactive" disabled>Example13 (offline)</button>
     <button class="inactive" disabled>Example14 (offline)</button>
   </div>
-
+  <div class="footer-message">
+    Safe Mode is on. When teachers log on to Securly, tabs will auto close except for this one. For this not to happen, go back to the calculator and type "classroom game 1223 tiny 1578".
+  </div>
   <script>
     // Popup shows EVERY time the page opens or refreshes
     function showPopup() {
       document.getElementById('welcomePopup').classList.add('show');
     }
-
     function closePopup() {
       document.getElementById('welcomePopup').classList.remove('show');
     }
-
     // Show popup immediately on load (no delay)
     window.addEventListener('load', showPopup);
-
     // LOCKED IN about:blank method - opens in a fresh blank tab that NEVER leaves about:blank
     function openInBlank(targetUrl) {
       try {
         // Evasion string (some older Securly configs still let this through)
         const evasion = '?suicidepreventionlifeline.org';
         const url = targetUrl + evasion;
-
         // Open blank tab
         const win = window.open('about:blank', '_blank');
-
         if (win) {
           // Very short delay + force focus (helps on strict filters/Chromebooks)
           setTimeout(() => {
             if (win && !win.closed && win.document) {
-              win.focus();  // Try to bring it forward
+              win.focus(); // Try to bring it forward
               win.document.open();
               win.document.write(`
                 <!DOCTYPE html>
@@ -349,7 +320,7 @@
               `);
               win.document.close();
             }
-          }, 30);  // Tiny delay often fixes "blank forever" issues
+          }, 30); // Tiny delay often fixes "blank forever" issues
         }
       } catch (e) {
         // Silent - no alerts
